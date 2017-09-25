@@ -1,0 +1,14 @@
+
+<view class="page">
+  <view wx:for="{{msgList}}" style="height:100px">
+    <view class="msgItem" bindtap="getDetail" id='{{item.msgPid}}'  bindtouchstart="touchstart" bindtouchend="touchend" animation="{{animationData}}">
+      <view class="msg_title">
+        <image src="{{item.fromAvatarUrl}}" style="height:40px;width:40px;"></image>
+        <text class="msg_name">{{item.fromWxNickname}}</text>
+        <text class="msg_date">{{item.addTime}}</text>
+      </view>
+      <view class="msg_content">{{item.content}}</view>
+    </view>
+    <view class="msg_del" style="z-index:{{delZIndex}}" id="{{item.msgPid}}" catchtap="delMessage"> 删 除 </view>
+  </view>
+</view>

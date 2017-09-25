@@ -1,0 +1,5 @@
+<view>
+
+    <text id="{{item.infoId}}">\n{{item.infoTitle}}\n{{item.infoContent}}\n</text>
+  
+</view>

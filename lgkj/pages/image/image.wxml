@@ -1,0 +1,18 @@
+
+<view class="img-area">
+  <image src="{{imgUrls}}" class="slide-image" width="100%" height="150"  mode="widthFix"  />
+</view>
+
+<view class="btn-area">
+  <navigator url="/pages/image/image" open-type="redirect" hover-class="other-navigator-hover">刷</navigator>
+</view>
+
+<view class="img_font">
+  <li>
+    <ol>1.查看动态图片比较耗费流量，建议在wifi环境下观看</ol>
+    <ol>2.动态图片加载比较慢，还请耐心</ol>
+  </li>
+</view>
+
+<import src="/pages/info/info_index.wxml"/>
+<template is="nav_temp" />

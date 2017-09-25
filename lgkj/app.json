@@ -1,0 +1,23 @@
+{
+  "pages":[
+    "pages/info/info_index",
+    "pages/menu/menu",
+    "pages/message/message_index",
+    "pages/location/location",
+    "pages/message/message_detail",
+    "pages/story/story_list",
+    "pages/story/story_detail",
+    "pages/video/video",
+    "pages/video/video_detail",
+    "pages/tests/test1",
+    "pages/tests/test2",
+    "pages/tests/test3",
+    "pages/image/image_list"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "灵感空间",
+    "navigationBarTextStyle":"black"
+  }
+}

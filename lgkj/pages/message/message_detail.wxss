@@ -1,0 +1,50 @@
+
+.page{
+  margin: 20px 10px 50px 10px;
+}
+.title{
+  text-align:center;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.msgItem{
+  margin:10px 5px 10px 5px;
+}
+.msg_title{
+}
+.msg_name{
+  font-size: 16px;
+  margin-left: 5px;
+  font-family: '微软雅黑';
+}
+.msg_date{
+  font-size: 14px;
+  margin-left: 10px;
+}
+.msg_content{
+  margin-top:5px;
+  margin-left: 10px;
+  font-size:14px;
+  line-height: 28px;
+  background-color:#CCC;
+  border-radius:10px;
+  width:auto;
+  padding-left:10px;
+  font-family: '微软雅黑';
+}
+
+
+.return_msg{
+  z-index: 99;
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  background-color: #FFF;
+  width: 100%;
+  height:40px;
+  border-top: 1px solid #CCC;
+}
+.return_msg input{
+  margin-left:10px;
+  height:30px;
+}

@@ -1,0 +1,18 @@
+<view>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}" show-location style="width: 100%; height: {{map_height}};" bindmarkertap="markertap" include-points="{{include_points}}"></map>
+
+
+</view>
+
+<view class="user_info" style="display:{{display}};">
+  <view class="user_image">
+    <image src="{{user_image}}" style="height:40px;width:40px;"></image>
+    <text class="user_name">{{user_name}}</text>
+  </view>
+  <view>
+    <text class="user_gender">{{user_gender}}</text>
+    <text class="user_country">{{user_country}}</text>
+  </view>
+  <button type="primary" size="mini" bindtap="showPushMsg" style='border:1px solid #CCC;color:#000;background-color:#FFF;margin-top:15px;display:{{button_display}}'> 打个招呼 </button>
+  <input placeholder="请输入" value="{{msg_value}}" style="width:90%;border:1px solid #CCC;display:{{text_display}};height:20px;margin-top:15px;" name="msg" bindconfirm="pushMsg" maxlength="50" placeholder-class="input_placeholder" cursor-spacing="25px" />
+</view>

@@ -1,0 +1,22 @@
+
+
+
+
+<view class="info">
+  <view class="info_item" wx:for="{{lists}}">
+    <view id="{{item.storyId}}" bindtap="showDetail">
+      <view class="story_title">{{item.storyTitle}}</view>
+      <view class="story_author">
+        <li>
+          <ol>
+            作者：{{item.storyAuthor}}
+          </ol>
+          <ol>
+            {{item.addTime}}
+          </ol>
+        </li>
+      </view>
+      <view class="story_summary" selectable="true">{{item.storySummary}}</view>
+    </view>
+  </view>
+</view>

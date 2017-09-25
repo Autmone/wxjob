@@ -1,0 +1,41 @@
+<view>
+
+    <view class="upload_video">
+        <button type="primary" size="mini" plain="true" bindtap="uploadVideo" hover-class="other-button-hover"> 上传你的视频 </button>
+    </view>
+
+    <view class="hr">
+        OR
+    </view>
+    <view class="upload_video">
+      
+        <button type="primary" size="mini" plain="true" bindtap="scanCode" hover-class="other-button-hover"> 让照片变成视频 </button>
+        <!--
+        <form bindsubmit="getVideo" bindreset="formReset" class="form_video">
+            <input class="input_video" placeholder-class="placeholder_video" type="text" name="fileName" placeholder="输入视频码查看" id="fileName"  />
+            <button type="primary" formType="submit" size="mini" plain="true" hover-class="other-button-hover"> 查看视频 </button>
+        </form>
+        -->
+    </view>
+
+
+    <!--
+    <button type="primary" bindtap="auth" > 查看视频 </button>
+    -->
+
+    <view class="video_font">
+      <ol>
+        <li>将视频转换成图片</li>
+        <li>1.点击 上传视频 ，上传你的视频，支持拍摄以及选择相册中的视频</li>
+        <li>2.等待视频上传完成，会提示保存生成的图片</li>
+        <li>3.点击保存生成的图片到相册，利用生成的照片，点击下方 照片变视频，就可以将照片还原成视频了</li>
+        <li>4.分享照片，即可让朋友观看；或者打印照片制作照片墙，将照片墙变为你的视频墙</li>
+        <li>注：由于资源有限，目前上传的视频只保存3天，可能会根据实际情况调整保存时间</li>
+      </ol>
+    </view>
+</view>
+
+
+
+<import src="/pages/info/info_index.wxml"/>
+<template is="nav_temp" data="{{menuList}}" />

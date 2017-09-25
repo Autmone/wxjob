@@ -1,0 +1,54 @@
+
+.page{
+  margin: 10px 5px 10px 5px;
+}
+.title{
+  text-align:center;
+  margin-top:20px;
+  padding-bottom:20px;
+  border-bottom: 1px solid #CCC;
+}
+.msgItem{
+  background-color: #FFF;
+  margin: 20px 5px 10px 5px;
+  margin-right: 5px;
+  border: 1px solid #CCC;
+  padding-left:10px;
+  padding-top:10px;
+  padding-bottom:10px;
+  height:75px;
+}
+.msg_title{
+  line-height: 28px;
+}
+.msg_name{
+  font-size:16px;
+  margin-left:10px;
+  margin-top:5px;
+}
+.msg_date{
+  font-size: 14px;
+  margin-left:15px;
+
+}
+.msg_content{
+  margin-top:5px;
+  font-size:14px;
+  font-family:'微软雅黑';
+  margin-left:15px;
+}
+.msg_del{
+  text-align: right;
+  position: relative;
+  right: 8px;
+  top: -107px;
+  color: #FFF;
+  background-color: red;
+  height: 35px;
+  padding-top: 36px;
+  padding-bottom: 26px;
+  padding-right: 5px;
+  width: 50px;
+  margin-right: 2px;
+  margin-left: auto;
+}

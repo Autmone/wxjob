@@ -1,0 +1,17 @@
+
+<view class="page">
+  <view wx:for="{{msgList}}">
+    <view class="msgItem">
+      <view class="msg_title">
+        <image src="{{item.fromAvatarUrl}}" style="height:40px;width:40px;"></image>
+        <text class="msg_name">{{item.fromWxNickname}}</text>
+        <text class="msg_date">{{item.addTime}}</text>
+        <view class="msg_content">{{item.content}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+  <view class="return_msg">
+      <input placeholder="回复" value="{{msg_value}}" name="msg" bindconfirm="pushMsg" maxlength="50" placeholder-class="input_placeholder" cursor-spacing="30" />
+  </view>

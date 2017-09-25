@@ -1,0 +1,9 @@
+<audio src="http://win.web.rf03.sycdn.kuwo.cn/facef17ccd1484d5621df769fda0969d/59536d0d/resource/a3/49/15/3276584835.aac"></audio>
+
+
+<audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+
+<button type="primary" bindtap="audioPlay">播放</button>
+<button type="primary" bindtap="audioPause">暂停</button>
+<button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
+<button type="primary" bindtap="audioStart">回到开头</button>

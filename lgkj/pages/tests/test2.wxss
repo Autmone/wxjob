@@ -1,0 +1,19 @@
+/* pages/tests/test2.wxss */
+.btn-area{
+    margin: 20px 10px;
+}
+.body-text{
+    line-height: 32px;
+    margin-bottom: 10px;
+}
+.body-radio{
+    margin-left: 20px;
+    font-family: '仿宋';
+    font-size: 18px;
+}
+.body-result{
+    font-family: '宋体';
+    font-size: 18px;
+    line-height: 24px;
+    margin: 20px 10px;
+}

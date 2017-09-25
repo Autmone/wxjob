@@ -1,0 +1,32 @@
+/* pages/location/location.wxss */
+.user_info{
+  z-index: 99;
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  background-color: #FFF;
+  width: 100%;
+  text-align:center;
+  line-height: 28px;
+  font-family: '微软雅黑';
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.user_image{
+  border-radius: 50%;
+}
+.user_name{
+  margin-left:20px;
+  font-size:16px;
+  font-family:'微软雅黑';
+}
+.user_gender {
+  margin-left:20px;
+  font-size:16px;
+  font-family:'宋体';
+}
+.user_country{
+  margin-left:20px;
+  font-size:16px;
+  font-family:'宋体';
+}

@@ -1,0 +1,6 @@
+
+    <view class="your_video">
+        <video src="{{fileSrc}}" id="yourVideo" autoplay="true" controls="false" objectFit="cover" ></video>
+    </view>
+
+

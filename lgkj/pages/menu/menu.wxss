@@ -1,0 +1,14 @@
+
+.page{
+  text-align:center;
+  line-height:48px;
+  background-color:#FFF;
+  padding-top: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.page navigator{
+  margin: 20px 10px 20px 10px;
+  border: 2px solid #CCC;
+}

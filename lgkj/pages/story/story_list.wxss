@@ -1,0 +1,53 @@
+
+.info{
+    margin:10px 10px 55px 10px;
+}
+.info_item{
+    border: solid 1px #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 30px;
+}
+.story_title{
+    line-height: 24px;
+    font-size: 16px;
+    margin-top:8px;
+}
+.story_author{
+    line-height: 24px;
+    font-size: 12px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px #CCC;
+    margin: 10px auto;
+}
+.story_author ol{
+    margin-left: 20px;
+}
+.story_summary{
+    float: none;
+    font-family: '微软雅黑';
+    line-height: 28px;
+    font-size: 14px;
+}
+
+
+
+
+.nav{
+  z-index: 99;
+  float: left;
+  position: fixed;
+  bottom:0px;
+  background-color: #FFF;
+  width: 100%;
+  /**color: #1aad19;**/
+  color: #000;
+  margin-left:1%;
+}
+.nav navigator{
+  border: 1px solid #CCC;
+  padding: 12px 8%;
+  float: left;
+  width:16%;
+  text-align:center;
+}

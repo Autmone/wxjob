@@ -1,0 +1,43 @@
+
+.info{
+  margin:10px 10px 52px 10px;
+}
+.info_item{
+    border: solid 1px #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.info_title{
+    line-height: 16px;
+    font-size: 16px;
+}
+
+.info_content{
+    line-height: 26px;
+    font-size: 16px;
+    font-family: '微软雅黑';
+}
+
+.nav{
+  z-index: 99;
+  float: left;
+  position: fixed;
+  bottom:0px;
+  background-color: #FFF;
+  width: 100%;
+  /**color: #1aad19;**/
+  color: #000;
+  margin-left:1%;
+}
+.nav navigator{
+  border: 1px solid #CCC;
+  padding: 12px 8%;
+  float: left;
+  width:16%;
+  text-align:center;
+}
+
+.info_top{
+  text-align: center;
+}

@@ -1,0 +1,3 @@
+<view class='page'>
+  <navigator wx:for="{{moreMenu}}" url="{{item.menuUrl}}" open-type="{{item.open_type}}" >{{item.menuName}}</navigator>
+</view>

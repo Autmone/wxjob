@@ -1,0 +1,13 @@
+.btn-area{
+    margin: 30px 40px;
+    font: 18px '仿宋';
+}
+.body-radio{
+    margin-top: 20px;
+}
+
+.body-result{
+
+    margin: 20px 20px;
+    font: 16px '仿宋';
+}

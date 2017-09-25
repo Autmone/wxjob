@@ -1,0 +1,11 @@
+
+
+<view class="img-area" bindtouchstart="touchstart" bindtouchend="touchend">
+  <view class="info_item" wx:for="{{lists}}">
+    <image src="{{item.url}}" class="slide-image" mode="aspectFit" style="width: 100%;" />
+  </view>
+</view>
+
+<import src="/pages/info/info_index.wxml"/>
+<template is="nav_temp" data="{{menuList}}" />
+<template is="copy" />

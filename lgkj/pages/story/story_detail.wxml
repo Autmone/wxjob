@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="story_title">
+    <text>{{item.storyTitle}}</text>
+  </view>
+  <view class="story_author">
+    <li>
+      <ol>
+        作者：{{item.storyAuthor}}
+      </ol>
+      <ol>
+        {{item.addTime}}
+      </ol>
+    </li>
+  </view>
+  <view class="story_summary">
+    <text>{{item.storySummary}}</text>
+  </view>
+  <view class="story_content">
+    <text>{{item.storyContent}}</text>
+  </view>
+
+  <view class="comment_banner">评 论</view>
+  <view class="story_comment">
+    <view wx:for="{{commentList}}">
+      <view class="comment_title"> 
+          <li>
+        <image style="width: 40px; height: 40px; background-color: #eeeeee;" src="{{item.avatarUrl}}"></image></li>
+          <li>{{item.wxNickname}}</li>
+          <li class="comment_time">{{item.addTime}}</li>
+      </view>
+      <view class="comment_content">
+        {{item.commentContent}}
+      </view>
+    </view>
+  </view>
+
+  <view class="your_comment">
+      <textarea placeholder="评论" name="commentContent" maxlength="125" bindconfirm="pushComment" placeholder-class="input_placeholder" fixed="true" cursor-spacing="25px" />
+  </view>
+  
+</view>

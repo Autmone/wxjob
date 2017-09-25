@@ -1,0 +1,15 @@
+<view class="btn-area">
+  <view class="body-text">
+    <text selectable="false">{{text}}</text>
+    </view>
+  <view class="body-radio">
+    <radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{item}}">
+    <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+  </label>
+</radio-group>
+  </view>
+  <view class="body-result">
+    <text selectable="false">{{result}}</text>
+    </view>
+</view>

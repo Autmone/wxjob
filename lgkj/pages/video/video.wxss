@@ -1,0 +1,59 @@
+
+.upload_video {
+    margin: 20px 10px;
+    text-align: center;
+}
+.hr {
+    margin: 30px;
+    font-size: 24px;
+    color: cornflowerblue;
+    text-align: center;
+}
+.get_video {
+    margin: 10px;
+    text-align: center;
+    width:100%;
+}
+.form_video{
+    width:100%;
+}
+.input_video {
+    border: solid 1px #CCC;
+    width:60%;
+    float: left;
+}
+.placeholder_video {
+    font-size: 16px;
+}
+.your_video {
+    margin-top : 50px;
+    text-align: center;
+}
+.video_font{
+  font-size:12px;
+  color: red;
+  line-height:24px;
+}
+.video_font li{
+  float: left;
+}
+
+
+.nav{
+  z-index: 99;
+  float: left;
+  position: fixed;
+  bottom:0px;
+  background-color: #FFF;
+  width: 100%;
+  /**color: #1aad19;**/
+  color: #000;
+  margin-left:1%;
+}
+.nav navigator{
+  border: 1px solid #CCC;
+  padding: 12px 8%;
+  float: left;
+  width:16%;
+  text-align:center;
+}
