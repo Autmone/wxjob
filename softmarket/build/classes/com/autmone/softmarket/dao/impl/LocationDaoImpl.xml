@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.autmone.softmarket.dao.ILocationDao" >
+	
+	<!-- 列表查询   -->
+	<select id="selectUserListByLocal" parameterType="Map" resultType="Map">
+		SELECT
+			location.latitude AS latitude,
+			location.longitude AS longitude,
+			DATE_FORMAT(location.add_time,'%Y-%m-%d %H:%m:%s') AS addTime,
+			wx_user.wx_nickname AS title,
+			wx_user.gender AS gender,
+			wx_user.avatarUrl AS avatarUrl,
+			wx_user.province AS province,
+			wx_user.city AS city,
+			wx_user.country AS country,
+			wx_user.wx_user_id AS wxUserId,
+			CASE WHEN  gender=1 THEN '../../images/boy.png' WHEN gender=2 THEN '../../images/girl.png' ELSE '../../images/unno.png' END AS iconPath
+		FROM
+			t_location location
+			LEFT JOIN 
+			t_wx_user wx_user
+			ON location.wx_user_id=wx_user.wx_user_id
+		<where>
+		    <if test="latitudeMin != null and latitudeMin != ''">
+				AND location.latitude > #{latitudeMin}
+		    </if>
+		    <if test="latitudeMax != null and latitudeMax != ''">
+				AND #{latitudeMax} > location.latitude  
+		    </if>
+		    <if test="longitudeMin != null and longitudeMin != ''">
+				AND location.longitude > #{longitudeMin}
+		    </if>
+		    <if test="longitudeMax != null and longitudeMax != ''">
+				AND #{longitudeMax} > location.longitude  
+		    </if>
+		</where> 
+		LIMIT #{startCount},#{pageSize}
+	</select>
+		
+	
+	<!-- 查询详情   -->
+	<select id="selectLocationDetail" parameterType="int" resultType="com.autmone.softmarket.vo.Location">
+		SELECT
+			location.location_id AS locationId,
+			location.latitude AS latitude,
+			location.longitude AS longitude,
+			location.check_num AS checkNum,
+			DATE_FORMAT(location.add_time,'%Y-%m-%d %H:%m:%s') AS addTime
+		FROM
+			t_location location
+		WHERE 
+			location.wx_user_id = #{wxUserId}
+	</select>
+	
+	<!-- 插入资料软件信息 -->
+	<insert id="insertLocation" parameterType="com.autmone.softmarket.vo.Location" useGeneratedKeys="true" keyProperty="locationId">
+		INSERT INTO t_location (
+			latitude,
+			longitude,
+			accuracy,
+			altitude,
+			verticalAccuracy,
+			horizontalAccuracy,
+			wx_user_id,
+			add_time
+		)
+		VALUES
+			(
+				#{latitude},#{longitude},#{accuracy},#{altitude},#{verticalAccuracy},#{horizontalAccuracy},#{wxUserId},#{addTime}
+			)
+	</insert>
+	
+	<!-- 更新信息 -->
+	<update id="updateLocation" parameterType="com.autmone.softmarket.vo.Location" >
+		UPDATE t_location location
+		SET
+			location.latitude = #{latitude},
+			location.longitude = #{longitude},
+			location.accuracy = #{accuracy},
+			location.altitude = #{altitude},
+			location.verticalAccuracy = #{verticalAccuracy},
+			location.horizontalAccuracy = #{horizontalAccuracy},
+			location.update_time = #{updateTime}
+		WHERE 
+			location.location_id = #{locationId}
+	</update>
+	
+	<!-- 更新查看次数 -->
+	<update id="updateLocationCheckNum" parameterType="int">
+		UPDATE t_location location
+		SET
+			location.check_num = location.check_num+1
+		WHERE
+			location.location_id=#{locationId}
+	</update>
+	
+</mapper>

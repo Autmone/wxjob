@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.autmone.softmarket.dao.ICommentDao" >
+	
+	<select id="selectCommentList" parameterType="Map" resultType="Map">
+		SELECT
+			comment.comment_id AS commentId,
+			comment.comment_content AS commentContent,
+			comment.good_num AS goodNum,
+			DATE_FORMAT(comment.add_time,'%Y-%m-%d %H:%m:%s') AS addTime,
+			user.wx_nickname AS wxNickname,
+			user.avatarUrl AS avatarUrl
+		FROM
+			t_comment comment LEFT JOIN t_wx_user user ON comment.user_id = user.wx_user_id
+			<where>
+			    <if test="type != null and type != ''">
+					AND comment.type = #{type}
+			    </if>
+			    <if test="typeId != null and typeId != ''">
+					AND comment.type_id = #{typeId}
+			    </if>
+			</where>
+		ORDER BY comment.add_time ASC 
+		LIMIT #{startCount},#{pageSize}
+	</select>
+	
+	<insert id="insertComment" parameterType="com.autmone.softmarket.vo.Comment" useGeneratedKeys="true" keyProperty="commentId">
+		INSERT INTO t_comment (
+			type,
+			type_id,
+			user_id,
+			comment_content,
+			add_time
+		)
+		VALUES
+			(
+				#{type},#{typeId},#{userId},#{commentContent},#{addTime}
+			)
+	</insert>
+	
+</mapper>

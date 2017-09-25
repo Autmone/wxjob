@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.autmone.softmarket.dao.IMessageDao" >
+	
+	<!-- 列表查询   -->
+	<select id="selectMsgListByPage" parameterType="Map" resultType="Map">
+	    SELECT 
+	    	msg.msg_pid AS msgPid,
+	    	msg.content AS content,
+			DATE_FORMAT(msg.add_time,'%Y-%m-%d %H:%m:%s') AS addTime,
+			to_wx_user.wx_nickname AS toWxNickname,
+			to_wx_user.avatarUrl AS toAvatarUrl,
+			from_wx_user.wx_nickname AS fromWxNickname,
+			from_wx_user.avatarUrl AS fromAvatarUrl
+		FROM t_message msg
+			LEFT JOIN 
+			t_wx_user to_wx_user
+			ON msg.to_user_id=to_wx_user.wx_user_id
+			LEFT JOIN 
+			t_wx_user from_wx_user
+			ON msg.from_user_id=from_wx_user.wx_user_id
+		WHERE msg_id IN (
+			SELECT
+				MAX(msg_id)
+			FROM
+				t_message msg
+			WHERE 
+				(msg.from_user_id = #{fromUserId} AND msg.from_state=1 ) OR (msg.to_user_id = #{toUserId} AND msg.to_state=1)
+			GROUP BY msg.msg_pid
+		)
+		ORDER BY msg.add_time DESC
+		LIMIT #{startCount},#{pageSize}
+	</select>
+		
+	
+	<!-- 查询详情   -->
+	<select id="selectMsgDetail" parameterType="Map" resultType="Map">
+		SELECT
+			msg.content AS content,
+			msg.is_view AS isView,
+			from_wx_user.wx_nickname AS fromWxNickname,
+			from_wx_user.avatarUrl AS fromAvatarUrl,
+			msg.from_user_id AS fromUserId,
+			msg.to_user_id AS toUserId,
+			DATE_FORMAT(msg.add_time,'%Y-%m-%d %H:%m:%s') AS addTime
+		FROM
+			t_message msg
+			LEFT JOIN 
+			t_wx_user from_wx_user
+			ON msg.from_user_id=from_wx_user.wx_user_id
+		WHERE 
+			msg.msg_pid = #{msgPid}
+			AND ((msg.from_user_id = #{fromUserId} AND msg.from_state=1 ) OR (msg.to_user_id = #{toUserId} AND msg.to_state=1))
+		ORDER BY msg.add_time DESC
+		LIMIT #{startCount},#{pageSize}
+	</select>
+	
+	<!-- 插入信息 -->
+	<insert id="insertMessage" parameterType="com.autmone.softmarket.vo.Message" useGeneratedKeys="true" keyProperty="msgId">
+		INSERT INTO t_message (
+			content,
+			from_user_id,
+			to_user_id,
+			is_view,
+			msg_pid,
+			add_time
+		)
+		VALUES
+			(
+				#{content},#{fromUserId},#{toUserId},#{isView},#{msgPid},#{addTime}
+			)
+	</insert>
+	
+	<!-- 更新查看 -->
+	<update id="updateMessageView" parameterType="Map">
+		UPDATE t_message msg
+		SET
+			msg.is_view = 1
+		WHERE
+			msg.msg_pid=#{msgPid}
+			AND msg.to_user_id=#{toUserId}
+	</update>
+	
+	<update id="updateMessagePid" parameterType="Map">
+		UPDATE t_message msg
+		SET
+			msg.msg_pid = #{msgPid}
+		WHERE
+			msg.msg_id=#{msgId}
+	</update>
+	
+	<update id="delMessage">
+	    UPDATE t_message msg
+		SET
+			msg.from_state = 0
+		WHERE
+			msg.msg_pid=#{msgPid}
+			AND msg.from_user_id=#{userId}
+		;
+		UPDATE t_message msg
+		SET
+			msg.to_state = 0
+		WHERE
+			msg.msg_pid=#{msgPid}
+			AND msg.to_user_id=#{userId}
+	</update>
+	
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.autmone.softmarket.dao.IUserDao" >
+	
+	<!-- 查询用户信息列表   -->
+	<select id="selectUserInfo" parameterType="Map" resultType="com.autmone.softmarket.vo.User">
+		SELECT
+			user.user_id AS userId,
+			user.username AS username,
+			user.vip_end_time AS vipEndTime,
+			user.add_time AS addTime,
+			user.update_time AS updateTime
+		FROM
+			t_user user
+			<where>
+			    <if test="username != null and username != ''">
+					AND user.username = #{username}
+			    </if>
+			    <if test="userPassword != null and userPassword != ''">
+					AND user.user_password = #{userPassword}
+			    </if>
+			    <if test="userId != null and userId != ''">
+					AND user.user_id = #{userId}
+			    </if>
+			</where>
+		LIMIT #{startCount},#{pageSize}
+	</select>
+	
+	<!-- 插入用户信息 -->
+	<insert id="insertUserInfo" parameterType="com.autmone.softmarket.vo.User" useGeneratedKeys="true" keyProperty="userId">
+		INSERT INTO t_user (
+			username,
+			user_password,
+			add_time
+		)
+		VALUES
+			(
+				#{username},#{userPassword},#{addTime}
+			)
+	</insert>
+	
+	<!-- 查询微信用户信息列表   -->
+	<select id="selectWXUserInfo" parameterType="Map" resultType="com.autmone.softmarket.vo.WXUser">
+		SELECT
+			user.wx_user_id AS wxUserId,
+			user.wx_nickname AS wxNickname,
+			user.openid AS openid,
+			user.session_key AS sessionKey,
+			user.avatarUrl AS avatarUrl,
+			user.gender AS gender,
+			user.province AS province,
+			user.city AS city,
+			user.country AS country,
+			user.add_time AS addTime
+		FROM
+			t_wx_user user
+			<where>
+			    <if test="openid != null and openid != ''">
+					AND user.openid = #{openid}
+			    </if>
+			</where>
+	</select>
+	
+	<!-- 插入微信用户信息 -->
+	<insert id="insertWXUserInfo" parameterType="com.autmone.softmarket.vo.WXUser" useGeneratedKeys="true" keyProperty="wxUserId">
+		INSERT INTO t_wx_user (
+			openid,
+			session_key,
+			add_time
+		)
+		VALUES
+			(
+				#{openid},#{sessionKey},#{addTime}
+			)
+	</insert>
+	
+	<update id="updateWXUser" parameterType="com.autmone.softmarket.vo.WXUser" useGeneratedKeys="true" keyProperty="userId">
+	    UPDATE t_wx_user
+	    <set> 
+	    	wx_nickName=#{wxNickname},
+	    	avatarUrl=#{avatarUrl},
+	    	gender=#{gender},
+	    	province=#{province},
+	    	city=#{city},
+	    	country=#{country}
+	    </set>
+	    <where>
+	    	wx_user_id=#{wxUserId}
+	    </where>
+	</update>
+	
+</mapper>

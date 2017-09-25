@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+<title>Soft Market -- 凹凸客</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Educative Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+
+<!-- //for-mobile-apps -->
+<link href="../css/amazeui.css" rel='stylesheet' type='text/css' />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../js/laypage/laypage.js"></script>
+
+<script type="text/javascript">
+	
+	$(function() {
+		var searchKey = location.search;
+		searchKey = searchKey.substring(searchKey.indexOf("=")+1);
+    	getSoftInfoList(1,searchKey + "&infoType=1");
+
+    	//搜索绑定事件
+//     	$("#searchButton").click(function(event) {
+//     		var searchKey = $("#searchKey").val();
+//     		getSoftInfoList(1,searchKey);
+//     	});
+	});
+	
+</script>
+
+
+</head>
+<body>
+<!-- banner -->
+	<div class="banner about-banner-w3ls " id="home">
+		<!-- header -->
+		<header>
+			<div class="container">
+
+				<!-- navigation -->
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<div class="w3-logo">
+							<h1>
+								<a href="index.html">凹凸客</a>
+							</h1>
+							<label></label>
+						</div>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="index.html">首 页</a></li>
+							<li><a class="active" href="software.html">软 件</a></li>
+							<li><a href="document.html">文 档</a></li>
+							<li><a href="video.html">视 频</a></li>
+<!-- 							<li><a href="about.html">关 于</a></li> -->
+						</ul>
+						<div style="float:right;">
+							<ul class='nav navbar-nav'><li id="usercontent"></li></ul>
+						</div>
+						<div class="subscribe">
+							<form>
+								<input type="search" class="sub-email" name="searchKey"
+									id="searchKey" required> <input type="submit"
+									value="" id="searchButton">
+							</form>
+						</div>
+					</div>
+					<!-- /.navbar-collapse -->
+
+				</nav>
+				<div class="clearfix"></div>
+				<!-- //navigation -->
+			</div>
+		</header>
+		<!-- //header -->
+		<h2>软件</h2>
+	</div>
+	<!-- //banner -->
+	<!--about-->
+	<!-- //main-content -->
+	<div class="wthree-main-content">
+		<!-- About-page -->
+		<div class="container">
+			<div class="reviews container" id="content">
+				<div id="part_list"></div>
+				<div id="p_page" class="page"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!--//about-->
+	<!-- Footer -->
+
+	<div class="copyright-wthree">
+		<p>
+			&copy; 2017 All Rights Reserved | 凹凸客
+		</p>
+	</div>
+	<!-- //Footer -->
+	<a href="#home" class="scroll" id="toTop" style="display: block;">
+		<span id="toTopHover" style="opacity: 1;"> </span>
+	</a>
+	<!-- //smooth scrolling -->
+
+	<script src="js/responsiveslides.min.js"></script>
+
+
+	<script>
+		// You can also use "$(window).load(function() {"
+		$(function() {
+			// Slideshow 4
+			$("#slider1").responsiveSlides({
+				auto : true,
+				pager : false,
+				nav : true,
+				speed : 500,
+				namespace : "callbacks",
+				before : function() {
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after : function() {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+
+		});
+	</script>
+
+	<!--gallery-->
+
+	<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo1").flexisel({
+				visibleItems : 3,
+				animationSpeed : 1000,
+				autoPlay : true,
+				autoPlaySpeed : 3000,
+				pauseOnHover : true,
+				enableResponsiveBreakpoints : true,
+				responsiveBreakpoints : {
+					portrait : {
+						changePoint : 480,
+						visibleItems : 1
+					},
+					landscape : {
+						changePoint : 640,
+						visibleItems : 1
+					},
+					tablet : {
+						changePoint : 768,
+						visibleItems : 1
+					}
+				}
+			});
+
+		});
+	</script>
+	<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+	<!--gallery-->
+
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop : $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			 */
+
+			$().UItoTop({
+				easingType : 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<!-- //here ends scrolling icon -->
+	<!--js for bootstrap working-->
+	<script src="js/bootstrap.js"></script>
+	<!-- //for bootstrap working -->
+
+
+	<!-- script-for-menu -->
+	<script>
+		$("span.menu").click(function() {
+			$(".top-nav ul").slideToggle("slow", function() {
+			});
+		});
+	</script>
+	<!-- script-for-menu -->
+
+	<div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd" id="showTitle">Amaze UI</div>
+			<div class="am-modal-bd" id="showContent">
+				<input type="text" class="am-modal-prompt-input">
+			</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn" data-am-modal-cancel>取消</span> <span
+					class="am-modal-btn" data-am-modal-confirm>提交</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">温馨提示</div>
+			<div class="am-modal-bd">密码输入错误！</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn">确定</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 侧边栏内容 -->
+	<div id="doc-oc-demo2" class="am-offcanvas">
+	  <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+	    <div class="am-offcanvas-content">
+			<div class="am-input-group am-input-group-primary">
+				<span class="am-input-group-label"><i
+					class="am-icon-user am-icon-fw"></i></span> <input type="text"
+					class="am-form-field" placeholder="用户名(6位及以上)" id="username" name="username" required>
+			</div>
+	
+			<div class="am-input-group am-input-group-primary">
+				<span class="am-input-group-label"><i
+					class="am-icon-lock am-icon-fw"></i></span> <input type="password"
+					class="am-form-field" placeholder="密码(6位及以上)" id="password" name="password" required>
+			</div>
+			<br />
+			<div style="color:#D71100;">*输入信息登录或者注册</div>
+			
+			<div class="am-input-group">
+				<button type="button" class="am-btn am-btn-primary am-radius" id="login">登 录</button>
+			</div>
+			<div class="am-input-group">
+				<button type="button" class="am-btn am-btn-primary am-radius" id="register">注 册</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+	
+	<script type="text/javascript" src="../js/amazeui.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.autmone.softmarket.dao.InformationDao" >
+	
+	<!-- 列表查询资料软件列表   -->
+	<select id="selectInfoListByPage" parameterType="Map" resultType="com.autmone.softmarket.vo.Information">
+		SELECT
+			info.info_id AS infoId,
+			info.info_title AS infoTitle,
+			info.info_content AS infoContent,
+			DATE_FORMAT(info.add_time,'%Y-%m-%d') AS addTime,
+			DATE_FORMAT(info.update_time,'%Y-%m-%d') AS updateTime,
+			info.check_num AS checkNum,
+			info.download_num AS downloadNum
+		FROM
+			t_info_data info
+			<where>
+			    <if test="infoType != null and infoType != ''">
+					AND info.info_type = #{infoType}
+			    </if>
+			    <if test="infoTitle != null and infoTitle != ''">
+					AND info.info_title LIKE CONCAT(CONCAT('%',#{infoTitle}),'%')
+			    </if>
+			    <if test="infoPassword != null and infoPassword != ''">
+					AND info.info_password = #{infoPassword}
+			    </if>
+			    <if test="infoNum != null and infoNum != ''">
+					AND info.info_num = #{infoNum}
+			    </if>
+			    <if test="infoId != null and infoId != ''">
+					AND info.info_id = #{infoId}
+			    </if>
+			</where>
+		ORDER BY info.add_time DESC
+		LIMIT #{startCount},#{pageSize}
+	</select>
+	
+	<!-- 查询资料软件列表总条数 -->
+	<select id="selectInfoListCount" parameterType="Map" resultType="int">
+		SELECT
+			COUNT(info.info_id) AS count
+		FROM
+			t_info_data info
+			<where>
+			    <if test="infoType != null and infoType != ''">
+					AND info.info_type = #{infoType}
+			    </if>
+			    <if test="infoTitle != null and infoTitle != ''">
+					AND info.info_title LIKE CONCAT(CONCAT('%',#{infoTitle}),'%')
+			    </if>
+			</where>
+	</select>
+	
+	<!-- 列表查询资料软件详情   -->
+	<select id="selectInfoDetail" parameterType="Map" resultType="com.autmone.softmarket.vo.Information">
+		SELECT
+			info.info_id AS infoId,
+			info.info_title AS infoTitle,
+			info.info_content AS infoContent,
+			info.info_url AS infoUrl,
+			info.is_password AS isPassword,
+			DATE_FORMAT(info.add_time,'%Y-%m-%d') AS addTime,
+			DATE_FORMAT(info.update_time,'%Y-%m-%d') AS updateTime,
+			info.check_num AS checkNum,
+			info.download_num AS downloadNum,
+			info.info_num AS infoNum
+		FROM
+			t_info_data info
+			<where>
+			    <if test="infoType != null and infoType != ''">
+					AND info.info_type = #{infoType}
+			    </if>
+			    <if test="infoTitle != null and infoTitle != ''">
+					AND info.info_title LIKE CONCAT(CONCAT('%',#{infoTitle}),'%')
+			    </if>
+			    <if test="infoPassword != null and infoPassword != ''">
+					AND info.info_password = #{infoPassword}
+			    </if>
+			    <if test="infoNum != null and infoNum != ''">
+					AND info.info_num = #{infoNum}
+			    </if>
+			    <if test="infoId != null and infoId != ''">
+					AND info.info_id = #{infoId}
+			    </if>
+			</where>
+	</select>
+	
+	<!-- 插入资料软件信息 -->
+	<insert id="insertInformation" parameterType="com.autmone.softmarket.vo.Information" useGeneratedKeys="true" keyProperty="actDetailId">
+		INSERT INTO t_info_data (
+			info_title,
+			info_content,
+			info_url,
+			is_password,
+			info_password,
+			is_free,
+			add_time,
+			info_type,
+			info_num
+		)
+		VALUES
+			(
+				#{infoTitle},#{infoContent},#{infoUrl},#{isPassword},#{infoPassword},#{isFree},#{addTime},#{infoType},#{infoNum}
+			)
+	</insert>
+	
+	<!-- 更新资料软件信息 -->
+	<update id="updateInformation" parameterType="com.autmone.softmarket.vo.Information" >
+		UPDATE t_info_data info
+		SET
+			info.info_title = #{infoTitle},
+			info.info_content = #{infoContent},
+			info.info_url = #{infoUrl},
+			info.is_password = #{isPassword},
+			info.info_password = #{infoPassword},
+			info.is_free = #{isFree},
+			info.info_type = #{infoType},
+			info.info_num = #{infoNum},
+			info.update_time = #{updateTime}
+		WHERE 
+			info.info_id = #{infoId}
+	</update>
+	
+	<!-- 删除资料软件信息 -->
+	<delete id="delInfomation" parameterType="com.autmone.softmarket.vo.Information">
+		DELETE FROM t_info_data
+		WHERE info_id = #{infoId}
+	</delete>
+	
+	<!-- 更新点击次数 -->
+	<update id="updateInfoCheckNum" parameterType="int">
+		UPDATE t_info_data info
+		SET
+			info.check_num = info.check_num+1
+		WHERE
+			info.info_id=#{infoId}
+	</update>
+	
+	<!-- 更新下载次数 -->
+	<update id="updateInfoDownNum" parameterType="int">
+		UPDATE t_info_data info
+		SET
+			info.download_num = info.download_num+1
+		WHERE
+			info.info_id=#{infoId}
+	</update>
+</mapper>

@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Soft Market -- 凹凸客</title>
+<link href="./css/amazeui.min.css" rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/laypage/laypage.js"></script>
+<script type="text/javascript" src="./js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+	var page_size=20;
+	
+	$(function() {
+    	getSoftInfoList(1);
+	});
+	
+	function getSoftInfoList(curr) {
+		$.ajax({
+			url: "/softmarket/api/information/getInfoList?page="+curr+'&pageSize='+page_size,
+			type: 'GET',
+			dataType: 'json',
+			success:function(rs){
+		        var html = '';
+	            if(rs.code == "0"){
+	            	if(rs.data.list.length > 0) {
+	            		$.each(rs.data.list, function(index, item){
+	            			html += '<div class="am-panel am-panel-default"> <div class="am-panel-hd" onClick="checkIsPassword(' + item.infoId + ')"> <h4 class="am-panel-title" data-am-collapse="{parent: \'#accordion\'}"> ' + item.infoTitle + ' </h4> </div> <div id="do-not-say-' + index + '" class="am-panel-collapse am-collapse am-in"> <div class="am-panel-bd"> ' + item.infoContent + ' </div> </div> </div>';
+	            		});
+	            	} else {
+	            		html='<tr><td colspan="10">暂无记录</td></tr>';
+	            	}
+	            	renderPage(rs.data.totalCount,curr);   //laypage分页插件调用 
+	            }else{
+	    			html='<tr><td colspan="10">暂无记录</td></tr>';
+	    			tipTopShow(rs.msg);
+	            }
+	    		$("#part_list").html(html);
+	        }
+		})
+	}
+
+
+	// 分页
+	function renderPage(total,curr){
+	    var pages = Math.ceil(total/page_size); //得到总页数
+	    //显示分页
+	    laypage({
+	        cont: 'p_page', //容器。值支持id名、原生dom对象，jquery对象。
+	        pages: pages, //通过后台拿到的总页数
+	        skip: true, //是否开启跳页
+	        skin: '#5877a4', // 红色: #AF0000
+	        groups: 5, //连续显示分页数
+	        curr: curr || 1, //当前页
+	        jump: function(obj, first){ //触发分页后的回调
+	            if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
+	            	getSoftInfoList(obj.curr);
+	            }
+	        }
+	    });
+	}
+	
+	function checkIsPassword(infoId) {
+		$.ajax({
+			url: "/softmarket/api/information/getInforDetail?infoId="+infoId,
+			type: 'GET',
+			dataType: 'json',
+			success:function(rs){
+				if(rs.code == "0"){
+	            	if(rs.data != null) {
+	            		if(rs.data.isPassword == 0) {
+	            			window.open(rs.data.infoUrl, rs.data.infoTitle);
+	            		} else {
+	            			showPasswordCheck(rs.data.infoTitle,rs.data.infoNum);
+	            		}
+	            	} else {
+	            		alert("暂无记录");
+	            	}
+	            } else{
+	            	alert("暂无记录");
+	            }
+	        }
+		})
+	}
+</script>
+
+</head>
+<body>
+	<div id="part_list" >
+	<div class="am-panel-group" id="accordion">
+		<div class="am-panel am-panel-default">
+			<div class="am-panel-hd">
+				<h4 class="am-panel-title"
+					data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+					...</h4>
+			</div>
+			<div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+				<div class="am-panel-bd">...</div>
+			</div>
+		</div>
+		<div class="am-panel am-panel-default">
+			<div class="am-panel-hd">
+				<h4 class="am-panel-title"
+					data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
+					...</h4>
+			</div>
+			<div id="do-not-say-2" class="am-panel-collapse am-collapse">
+				<div class="am-panel-bd">...</div>
+			</div>
+		</div>
+		<div class="am-panel am-panel-default">
+			<div class="am-panel-hd">
+				<h4 class="am-panel-title"
+					data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}">...</h4>
+			</div>
+			<div id="do-not-say-3" class="am-panel-collapse am-collapse">
+				<div class="am-panel-bd">...</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="p_page" class="page"></div>
+
+	<div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd" id="showTitle">Amaze UI</div>
+			<div class="am-modal-bd" id="showContent">
+				<input type="text" class="am-modal-prompt-input">
+			</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn" data-am-modal-cancel>取消</span> <span
+					class="am-modal-btn" data-am-modal-confirm>提交</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">错误提示</div>
+			<div class="am-modal-bd">密码输入错误！</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn">确定</span>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		function showPasswordCheck(showTitle, infoNum) {
+			$("#showTitle").text(showTitle); 
+			$("#showContent").html("请输入访问密码:<br /><span style='font-size:12px;'>不知道密码？可使用微信扫码关注以下公众号，回复" + infoNum +"，进行密码查询.</span>"
+			+ "<img src=./images/qrcode.jpg>" 
+			+ "<input type='text' class='am-modal-prompt-input'>");
+			$('#my-prompt').modal({
+				relatedTarget : this,
+				onConfirm : function(e) {
+					$.ajax({
+						url: "/softmarket/api/information/checkPassword?infoPassword="+e.data + "&infoNum="+infoNum,
+						type: 'GET',
+						dataType: 'json',
+						success:function(rs){
+							if(rs.code == "0"){
+				            	window.open(rs.data.infoUrl, rs.data.infoTitle);
+				            } else{
+				            	$('#my-alert').modal({
+				            	
+				            	});
+				            }
+				        }
+					})
+				},
+				onCancel : function(e) {
+					
+				}
+			});
+		}
+	</script>
+</body>
+</html>
